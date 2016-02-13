@@ -7,110 +7,31 @@
  */
 
 namespace com\brolaugh\database;
+use com\brolaugh\database\tables\Consumable;
+use com\brolaugh\database\tables\FikaTime;
+use com\brolaugh\database\tables\Partaking;
+use com\brolaugh\database\tables\Person;
+use com\brolaugh\database\tables\Receipt;
 
-
-use com\brolaugh\entities\FikaTime;
-use com\brolaugh\entities\Person;
-use com\brolaugh\entities\Receipt;
-
+/**
+ * Class Select
+ * @package com\brolaugh\database
+ */
 class Select extends DBSetup
 {
-    /**
-     * @return array
-     */
-    public function getAllReceiptRows(){
-        $stmt = $this->getDB()->prepare("SELECT * FROM receipt");
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $a  = array();
-        while($row = $res->fetch_object()){
-            array_push($a, new Receipt($row));
-        }
-        $stmt->close();
-        return $a;
-    }
+    public $partaking;
+    public $consumable;
+    public $fikatime;
+    public $person;
+    public $receipt;
 
-
-    /**
-     * @param fikatime_id
-     * @return array
-     */
-    public function getAllReceiptByFika($id){
-        $stmt = $this->getDB()->prepare("SELECT * FROM receipt WHERE fikatime_id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $a  = array();
-        while($row = $res->fetch_object()){
-            array_push($a, new Receipt($row));
-        }
-        $stmt->close();
-        return $a;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->partaking = new Partaking($this->getDb());
+        $this->consumable = new Consumable($this->getDb());
+        $this->fikatime = new FikaTime($this->getDb());
+        $this->person = new Person($this->getDb());
+        $this->receipt = new Receipt($this->getDb());
     }
-
-    public function getAllReceiptByPerson($id){
-        $stmt = $this->getDB()->prepare("SELECT * FROM receipt WHERE person_id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $a  = array();
-        while($row = $res->fetch_object()){
-            array_push($a, new Receipt($row));
-        }
-        $stmt->close();
-        return $a;
-    }
-    public function getReceiptById($id){
-        $stmt = $this->getDB()->prepare("SELECT * FROM receipt WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $row = $res->fetch_object();
-        $stmt->close();
-        return new FikaTime($row);
-    }
-    public function getFikaTimeById($id){
-        $stmt = $this->getDB()->prepare("SELECT * FROM fika_time WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $row = $res->fetch_object();
-        $stmt->close();
-        return new FikaTime($row);
-    }
-
-
-    public function getFikaTimeByResponsable($id){
-        $stmt = $this->getDB()->prepare("SELECT * FROM fika_time WHERE person_id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $a  = array();
-        while($row = $res->fetch_object()){
-            array_push($a, new FikaTime($row));
-        }
-        $stmt->close();
-        return $a;
-    }
-    public function getPersonById($id){
-        $stmt = $this->getDB()->prepare("SELECT * FROM person WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $row = $res->fetch_object();
-        $stmt->close();
-        return new Person($row);
-    }
-    public function getAllPerson(){
-        $stmt = $this->getDB()->prepare("SELECT * FROM person");
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $a  = array();
-        while($row = $res->fetch_object()){
-            array_push($a, new Person($row));
-        }
-        $stmt->close();
-        return $a;
-    }
-
 }

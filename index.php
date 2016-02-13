@@ -24,6 +24,17 @@ $s = new com\brolaugh\database\Select();
 
     <main>
 
+
+        <?php
+          $pa = $s->getAllPerson();
+          foreach($pa as $p){
+            echo $p->getFName();
+            echo $p->getSName();
+            echo "<br/>";
+          }
+
+
+        ?>
     </main>
     <footer>
       <script src="js/jquery.min.js" charset="utf-8"></script>

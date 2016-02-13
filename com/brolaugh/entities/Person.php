@@ -19,7 +19,19 @@ class Person
     private $username;
     private $password;
 
-
+    /**
+     * Person constructor.
+     * @param $personRow
+     */
+    public function __construct($personRow){
+        $this->id = $personRow->id;
+        $this->fname = $personRow->fname;
+        $this->sname = $personRow->sname;
+        $this->email = $personRow->email;
+        $this->telephone = $personRow->telephone;
+        $this->username = $personRow->login;
+        $this->password = $personRow->password;
+    }
 
     /**
  * @return mixed
@@ -34,73 +46,73 @@ public function setId($id)
 {
     $this->id = $id;
 }/**
- * @return mixed
+ * @return string
  */
-public function getFname()
+public function getFName()
 {
     return $this->fname;
 }/**
- * @param mixed $fname
+ * @param string $fname
  */
-public function setFname($fname)
+public function setFName($fname)
 {
     $this->fname = $fname;
 }/**
- * @return mixed
+ * @return string
  */
-public function getSname()
+public function getSName()
 {
     return $this->sname;
 }/**
- * @param mixed $sname
+ * @param string $sname
  */
-public function setSname($sname)
+public function setSName($sname)
 {
     $this->sname = $sname;
 }/**
- * @return mixed
+ * @return string
  */
 public function getEmail()
 {
     return $this->email;
 }/**
- * @param mixed $email
+ * @param string $email
  */
 public function setEmail($email)
 {
     $this->email = $email;
 }/**
- * @return mixed
+ * @return string
  */
 public function getTelephone()
 {
     return $this->telephone;
 }/**
- * @param mixed $telephone
+ * @param string $telephone
  */
 public function setTelephone($telephone)
 {
     $this->telephone = $telephone;
 }/**
- * @return mixed
+ * @return string
  */
 public function getUsername()
 {
     return $this->username;
 }/**
- * @param mixed $username
+ * @param string $username
  */
 public function setUsername($username)
 {
     $this->username = $username;
 }/**
- * @return mixed
+ * @return string
  */
 public function getPassword()
 {
     return $this->password;
 }/**
- * @param mixed $password
+ * @param string $password
  */
 public function setPassword($password)
 {

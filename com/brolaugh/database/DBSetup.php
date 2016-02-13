@@ -10,7 +10,7 @@
 
 namespace com\brolaugh\database;
 
-class DBSetup
+abstract class DBSetup
 {
     private $db;
     private $server = "rickardhforslund.se";
@@ -33,7 +33,7 @@ class DBSetup
     /**
      * @return Mysqli
      */
-    protected function getDb()
+    protected final function getDb()
     {
         return $this->db;
     }
