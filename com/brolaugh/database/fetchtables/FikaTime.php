@@ -6,12 +6,9 @@
  * Time: 10:45 PM
  */
 
-namespace com\brolaugh\database\tables;
+namespace com\brolaugh\database\fetchtables;
 
-
-use com\brolaugh\database\DBSetup;
-
-class FikaTime extends Table
+class FikaTime extends \com\brolaugh\database\Table
 {
   public function getFikaTimeById($id){
     $stmt = $this->getDB()->prepare("SELECT * FROM fika_time WHERE id = ?");
@@ -20,7 +17,7 @@ class FikaTime extends Table
     $res = $stmt->get_result();
     $row = $res->fetch_object();
     $stmt->close();
-    return new FikaTime($row);
+    return new \com\brolaugh\entities\FikaTime($row);
   }
 
 
@@ -31,7 +28,7 @@ class FikaTime extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new FikaTime($row));
+      array_push($a, new \com\brolaugh\entities\FikaTime($row));
     }
     $stmt->close();
     return $a;

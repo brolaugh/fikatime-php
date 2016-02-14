@@ -6,10 +6,10 @@
  * Time: 10:45 PM
  */
 
-namespace com\brolaugh\database\tables;
+namespace com\brolaugh\database\fetchtables;
 
 
-class Person extends Table
+class Person extends \com\brolaugh\database\Table
 {
 
   /**
@@ -21,7 +21,7 @@ class Person extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Person($row));
+      array_push($a, new \com\brolaugh\entities\Person($row));
     }
     $stmt->close();
     return $a;
@@ -38,7 +38,7 @@ class Person extends Table
     $res = $stmt->get_result();
     $row = $res->fetch_object();
     $stmt->close();
-    return new Person($row);
+    return new \com\brolaugh\entities\Person($row);
   }
 
   /**
@@ -52,7 +52,7 @@ class Person extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Person($row));
+      array_push($a, new \com\brolaugh\entities\Person($row));
     }
     $stmt->close();
     return $a;
@@ -69,7 +69,7 @@ class Person extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Person($row));
+      array_push($a, new \com\brolaugh\entities\Person($row));
     }
     $stmt->close();
     return $a;
@@ -84,7 +84,7 @@ class Person extends Table
     $stmt->bind_param('s', $username);
     $stmt->execute();
     $res = $stmt->get_result();
-    $p = new Person($res->fetch_object());
+    $p = new \com\brolaugh\entities\Person($res->fetch_object());
     $stmt->close();
     return $p;
   }
@@ -98,7 +98,7 @@ class Person extends Table
     $stmt->bind_param('s', $email);
     $stmt->execute();
     $res = $stmt->get_result();
-    $p = new Person($res->fetch_object());
+    $p = new \com\brolaugh\entities\Person($res->fetch_object());
     $stmt->close();
     return $p;
   }
@@ -112,9 +112,21 @@ class Person extends Table
     $stmt->bind_param('s', $telephone);
     $stmt->execute();
     $res = $stmt->get_result();
-    $p = new Person($res->fetch_object());
+    $p = new \com\brolaugh\entities\Person($res->fetch_object());
     $stmt->close();
     return $p;
+  }
+  public function doesPersonUsernameExist($username){
+    $stmt = $this->getDB()->prepare("SELECT id FROM person WHERE username = ?");
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    if($res->num_rows > 0){
+      return true;
+    }
+    else{
+      false;
+    }
   }
 
 }

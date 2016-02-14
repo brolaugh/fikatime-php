@@ -9,6 +9,12 @@
 namespace com\brolaugh\database;
 
 
+use com\brolaugh\database\pushtables\Consumable;
+use com\brolaugh\database\pushtables\FikaTime;
+use com\brolaugh\database\pushtables\Partaking;
+use com\brolaugh\database\pushtables\Person;
+use com\brolaugh\database\pushtables\Receipt;
+
 class Insert extends DBSetup
 {
   public $partaking;
@@ -17,6 +23,9 @@ class Insert extends DBSetup
   public $person;
   public $receipt;
 
+  /**
+   * Insert constructor.
+   */
   public function __construct()
   {
     parent::__construct();

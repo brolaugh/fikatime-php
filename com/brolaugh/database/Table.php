@@ -6,7 +6,7 @@
  * Time: 11:05 PM
  */
 
-namespace com\brolaugh\database\tables;
+namespace com\brolaugh\database;
 
 
 class Table
@@ -19,7 +19,7 @@ class Table
   /**
    * @return mysqli
    */
-  protected final function getDb(){
+  protected final function getDB(){
     return $this->db;
   }
 }

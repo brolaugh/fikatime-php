@@ -6,12 +6,9 @@
  * Time: 10:44 PM
  */
 
-namespace com\brolaugh\database\tables;
+namespace com\brolaugh\database\fetchtables;
 
-
-use com\brolaugh\database\DBSetup;
-
-class Consumable extends Table
+class Consumable extends \com\brolaugh\database\Table
 {
   public function getAllConsumable(){
     $stmt = $this->getDB()->prepare("SELECT * FROM consumable");
@@ -19,7 +16,7 @@ class Consumable extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Consumable($row));
+      array_push($a, new \com\brolaugh\entities\Consumable($row));
     }
     $stmt->close();
     return $a;
@@ -34,7 +31,7 @@ class Consumable extends Table
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $res = $stmt->get_result();
-    $c = new Consumable($res->fetch_object());
+    $c = new \com\brolaugh\entities\Consumable($res->fetch_object());
     $stmt->close();
     return $c;
   }
@@ -50,7 +47,7 @@ class Consumable extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Consumable($row));
+      array_push($a, new \com\brolaugh\entities\Consumable($row));
     }
     $stmt->close();
     return $a;

@@ -7,11 +7,11 @@
  */
 
 namespace com\brolaugh\database;
-use com\brolaugh\database\tables\Consumable;
-use com\brolaugh\database\tables\FikaTime;
-use com\brolaugh\database\tables\Partaking;
-use com\brolaugh\database\tables\Person;
-use com\brolaugh\database\tables\Receipt;
+use com\brolaugh\database\fetchtables\Consumable;
+use com\brolaugh\database\fetchtables\FikaTime;
+use com\brolaugh\database\fetchtables\Partaking;
+use com\brolaugh\database\fetchtables\Person;
+use com\brolaugh\database\fetchtables\Receipt;
 
 /**
  * Class Select

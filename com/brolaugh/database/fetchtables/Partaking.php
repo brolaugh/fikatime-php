@@ -6,12 +6,9 @@
  * Time: 10:43 PM
  */
 
-namespace com\brolaugh\database\tables;
+namespace com\brolaugh\database\fetchtables;
 
-
-use com\brolaugh\database\DBSetup;
-
-class Partaking extends Table
+class Partaking extends \com\brolaugh\database\Table
 {
   /**
    * @param $id
@@ -24,7 +21,7 @@ class Partaking extends Table
     $res = $stmt->get_result();
     $p = $res->fetch_object();
     $stmt->close();
-    return new Partaking($p);
+    return new \com\brolaugh\entities\Partaking($p);
   }
 
   /**
@@ -38,7 +35,7 @@ class Partaking extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Partaking($row));
+      array_push($a, new \com\brolaugh\entities\Partaking($row));
     }
     $stmt->close();
     return $a;
@@ -55,7 +52,7 @@ class Partaking extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Partaking($row));
+      array_push($a, new \com\brolaugh\entities\Partaking($row));
     }
     $stmt->close();
     return $a;

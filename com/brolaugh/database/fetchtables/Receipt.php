@@ -6,10 +6,10 @@
  * Time: 10:46 PM
  */
 
-namespace com\brolaugh\database\tables;
+namespace com\brolaugh\database\fetchtables;
 
 
-class Receipt extends Table
+class Receipt extends \com\brolaugh\database\Table
 {
   /**
    * @return Receipt array
@@ -20,7 +20,7 @@ class Receipt extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Receipt($row));
+      array_push($a, new \com\brolaugh\entities\Receipt($row));
     }
     $stmt->close();
     return $a;
@@ -38,7 +38,7 @@ class Receipt extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Receipt($row));
+      array_push($a, new \com\brolaugh\entities\Receipt($row));
     }
     $stmt->close();
     return $a;
@@ -55,7 +55,7 @@ class Receipt extends Table
     $res = $stmt->get_result();
     $a  = array();
     while($row = $res->fetch_object()){
-      array_push($a, new Receipt($row));
+      array_push($a, new \com\brolaugh\entities\Receipt($row));
     }
     $stmt->close();
     return $a;
@@ -72,7 +72,7 @@ class Receipt extends Table
     $res = $stmt->get_result();
     $row = $res->fetch_object();
     $stmt->close();
-    return new Receipt($row);
+    return new \com\brolaugh\entities\Receipt($row);
   }
 
 
