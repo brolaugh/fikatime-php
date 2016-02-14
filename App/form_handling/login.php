@@ -15,10 +15,10 @@ include "Helper.php";
       if($login->doLogin($_POST['username'], $_POST['password']))
         header("Location:".ROOT);
       else
-        header("Location:".ROOT."/login?error=1");
+        header("Location:".ROOT."/login?error=failLogin");
         exit();
     }else{
-      header("Location:".ROOT."/login?error=1");
+      header("Location:".ROOT."/login?error=preg");
       exit();
     }
   }else{

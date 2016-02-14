@@ -84,11 +84,16 @@ class Person extends Table
   public function getPersonByUsername($username){
     $stmt = $this->getDB()->prepare("SELECT * FROM person WHERE login = ?");
     $stmt->bind_param('s', $username);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    $p = new \App\entities\Person($res->fetch_object());
-    $stmt->close();
-    return $p;
+    if($stmt->execute()){
+      $res = $stmt->get_result();
+      $p = new \App\entities\Person($res->fetch_object());
+      $stmt->close();
+      return $p;
+    }else{
+      $stmt->close();
+      return false;
+    }
+
   }
 
   /**

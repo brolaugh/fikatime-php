@@ -9,3 +9,9 @@
 
 
 Kappa Keppo Dashboard
+
+
+<?php
+  echo $_SESSION['user']->getUsername();
+
+?>
