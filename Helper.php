@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: brolaugh
+ * User: database
  * Date: 2/13/16
  * Time: 7:49 PM
  */
@@ -35,38 +35,4 @@ function isLoggedIn(){
     }
   }
 
-}
-if(isset($_POST['submit_type'])&& $_POST['submit_type' == "login"]){
-  if(isset($_POST['username']) && isset($_POST['password'])){
-    if(preg_match("a-zA-Z0-9" ,$_POST['username'])) {
-      $login = new Login();
-      $login->doLogin($_POST['username'], $_POST['password']);
-    }else{
-      header("Location:".ROOT."/login?error=1");
-      exit();
-    }
-  }
-}
-if(isset($_POST['submit_type']) && $_POST['submit_type' == "register"]){
-  if(isset($_POST['username']) && isset($_POST['password'])){
-    if(preg_match("a-zA-Z0-9" ,$_POST['username'])) {
-      $register = new \com\brolaugh\database\Register();
-      $register->setUsername($_POST['username']);
-      $register->setPassword($_POST['password']);
-      $register->setPassword2($_POST['passwordconfirm']);
-      $register->setEmail($_POST['email']);
-      $register->setFname($_POST['fname']);
-      $register->setSname($_POST['sname']);
-      if($register->check()){
-        $register->finalize();
-      }else{
-        header("Location:".ROOT."/register?error=1");
-        exit();
-      }
-
-    }else{
-      header("Location:".ROOT."/login?error=1");
-      exit();
-    }
-  }
 }

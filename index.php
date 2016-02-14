@@ -1,14 +1,11 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: brolaugh
+ * User: database
  * Date: 2/13/16
  * Time: 5:03 PM
  */
 include_once("Helper.php");
-
-$s = new com\brolaugh\database\Select();
-
 
 ?>
 <!DOCTYPE html>
@@ -33,15 +30,15 @@ $s = new com\brolaugh\database\Select();
   $regex = '/[^A-Za-z0-9\-_\/]/';
   $_REQUEST['page'] = preg_replace($regex, '', $_GET['page']);
 
-  if (file_exists('com/brolaugh/pages/' . $_GET['page'] . '.php'))
-    include 'com/brolaugh/pages/' . $_GET['page'] . '.php';
+  if (file_exists('App/pages/' . $_GET['page'] . '.php'))
+    include 'App/pages/' . $_GET['page'] . '.php';
   else
-    include 'com/brolaugh/pages/404.php';
+    include 'App/pages/404.php';
   }else{
     if(isLoggedIn()){
-      include 'com/brolaugh/pages/dashboard.php';
+      header("Location:".ROOT."/dashboard");
     }else{
-      include 'com/brolaugh/pages/login.php';
+      header("Location:".ROOT."/splash");
     }
 
   }
